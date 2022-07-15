@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <div id="output"> </div>
+
+        <input type="number" onchange="sellBussTicket(this.value)"> 
+
+
+
+        <script> 
+        let infant = 0;
+        let child = 0;
+        let adult = 0;
+        let senior = 0;
+        let infantPrice = 0;
+        let childPrice = 20;
+        let adultPrice= 50;
+        let seniorPrice = 30;
+        let totalPrice = 0;
+        let totaltTickets =0;
+        let errorMSG = '';
+
+            function sellBussTicket(inputValue){
+                    if(inputValue == '' || inputValue < 0){
+                        errorMSG = 'FEIL INPUT'
+                    }
+                    else {
+                        totaltTickets++   
+                        errorMSG = ''; 
+                    }
+
+                    if(inputValue >= 0 && inputValue <6 && inputValue!= ''){
+                        infant++;
+                    
+                    }
+                    else if(inputValue >= 6 && inputValue < 16){
+                            child++;
+                            totalPrice += childPrice;
+                            
+                    }
+                    else if(inputValue >= 16 && inputValue < 60){
+                        adult ++;
+                        totalPrice += adultPrice;
+                    }
+                    else if(inputValue >=60)  {
+                        senior++;
+                        totalPrice += seniorPrice;}
+
+
+                        createDiv(infant, child, adult, senior, totaltTickets, totalPrice)
+              
+                
+            }
+
+            function createDiv(infant, child, adult, senior, totaltTickets, totalPrice){
+                document.getElementById('output').innerHTML = 
+                crateInfantDiv(infant)
+                +createChildtDiv(child)
+                + createAdultDiv(adult)
+                + createSeniorDiv(senior)
+                + createTotalTickets(totaltTickets)
+                + createTotalPriceDiv(totalPrice)
+                + createErrorDiv(errorMSG);
+            }
+
+         
+
+            function crateInfantDiv(infant){
+                return `<p>Baby: ${infant}</p>`
+            }
+
+            function createChildtDiv(child){
+                return `<p>Barn: ${child}</p>`
+            }
+            function createAdultDiv(adult){
+                return `<p>Voksen: ${adult}</p>`
+            }
+            function createTotalTickets(totaltTickets){
+                return `<tt>totalt billetter: ${totaltTickets}</tt>`
+            }
+
+            function createSeniorDiv(senior){
+                return `<p>Senior: ${senior}</p>`
+            }
+            function createTotalPriceDiv(totalPrice){
+                return `<br><tt>Total Pris: ${totalPrice}</tt>`
+            }
+            function createErrorDiv(errorMSG){
+                return `<h4 style="color:red;">${errorMSG}</h4>`
+            }
+
+        </script>
+</body>
+</html>
